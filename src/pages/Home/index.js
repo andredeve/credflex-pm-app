@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="container">
       <Header/>
-      <h1>Sherife do Dia - {user.nome}</h1>
+      <h1>Xerife do Dia - {user.nome}</h1>
     </div>
   );
 }
