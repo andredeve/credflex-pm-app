@@ -1,0 +1,71 @@
+.ranking-devedores-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0px;
+    text-align: center;
+  }
+  
+  .podium-container {
+    display: flex;
+    justify-content: space-around; /* Espaça igualmente os pódios */
+    align-items: flex-end;
+    gap: 0px;
+    margin-top: 0px;
+  }
+  
+  .podium-item {
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .podium-item.podium-1 {
+    height: 180px;
+  }
+  
+  .podium-item.podium-2 {
+    height: 150px;
+  }
+  
+  .podium-item.podium-3 {
+    height: 130px;
+  }
+  
+  .trophy {
+    font-size: 50px;
+    margin: 0 auto 10px; /* Centraliza o ícone */
+  }
+  
+  .trophy-1 {
+    color: black; /* Sem cor, apenas ícone preto */
+  }
+  
+  .trophy-2 {
+    color: black;
+  }
+  
+  .trophy-3 {
+    color: black;
+  }
+  
+  .podium-position {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .podium-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .podium-saldo {
+    font-size: 14px;
+    color: #555;
+  }
+  

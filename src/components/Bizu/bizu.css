@@ -1,0 +1,112 @@
+/* Corneta.css */
+
+.corneta-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .corneta-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .corneta-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .corneta-list li {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .corneta-button {
+    background-color: #f8f8f8;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .corneta-button:hover {
+    background-color: #f8f8f8;
+  }
+  
+  .corneta-button:focus {
+    outline: none;
+  }
+  
+  .corneta-button i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  
+  .gif-container img {
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+  
+  .corneta-description {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .corneta-mnemonic {
+    font-style: italic;
+    color: #333;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .toggle-lyrics {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Texto branco */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-lyrics:hover {
+    background-color: #45a049; /* Cor de fundo quando hover */
+    transform: scale(1.05); /* Aumenta um pouco o tamanho do botão */
+}
+
+.toggle-lyrics:focus {
+    outline: none; /* Remove o contorno padrão ao focar */
+}
+
+.toggle-lyrics i {
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.corneta-lyrics {
+  text-align: center; /* Centraliza o texto */
+  margin: 10px 0;
+  line-height: 1.5; /* Ajusta o espaçamento entre linhas */
+  font-size: 1.2rem; /* Tamanho da fonte */
+  max-width: 80%; /* Limita a largura do texto */
+  margin-left: auto; 
+  margin-right: auto;
+  white-space: pre-wrap; /* Mantém a formatação de quebra de linha */
+}
+
+
+  

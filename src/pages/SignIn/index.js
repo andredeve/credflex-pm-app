@@ -44,7 +44,7 @@ export default function SignIn(){
         </form>
         <Link
          className='button-link'
-         to="/credflex"
+         to="/credflexaluno"
         >
           CredFlex
         </Link>
