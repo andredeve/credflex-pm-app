@@ -1,13 +1,11 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
 import Header from "../../components/Header";
 import './home.css';
-import { useNavigate } from 'react-router-dom';
 
 
 export default function Home() {
-  const { user, setUser, storageUser, loadingauth, setLoadingAuth } = useContext(AuthContext);
-  const navigate = useNavigate(); 
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="container">

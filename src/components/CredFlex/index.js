@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './credflex.css'; // Importe o CSS com o prefixo 'cred-flex'
 import { db } from '../../services/firebaseConection';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore'; // Para buscar e salvar no Firestore
-import { AuthContext } from "../../contexts/auth";
+import { toast } from 'react-toastify'; // Importe o toast do react-toastify
 
 const CredFlex = () => {
-//   const { user } = useContext(AuthContext); // Obtenha o usuário do contexto
+  //   const { user } = useContext(AuthContext); // Obtenha o usuário do contexto
   const [alunosData, setAlunosData] = useState([]); // Alunos carregados do Firestore
   const [pelotaoSelecionado, setPelotaoSelecionado] = useState('');
   const [alunoSelecionado, setAlunoSelecionado] = useState(null);
@@ -53,6 +53,7 @@ const CredFlex = () => {
 
       // Atualiza o estado local com o novo saldo
       setAlunoSelecionado(alunoAtualizado);
+      toast.success('Flexões adicionadas com sucesso!'); // Mensagem toast de sucesso
     }
   };
 
@@ -76,6 +77,7 @@ const CredFlex = () => {
 
       // Atualiza o estado local
       setAlunoSelecionado(alunoAtualizado);
+      toast.success('Flexões pagas com sucesso!'); // Mensagem toast de sucesso
     }
   };
 
@@ -100,6 +102,7 @@ const CredFlex = () => {
     }
     // Recarrega os alunos após a atualização
     await carregarAlunosDoFirestore();
+    toast.success('Flexões adicionadas em massa com sucesso!'); // Mensagem toast de sucesso
   };
 
   // Função para adicionar flexões para todos os alunos
@@ -121,6 +124,7 @@ const CredFlex = () => {
     }
     // Recarrega os alunos após a atualização
     await carregarAlunosDoFirestore();
+    toast.success('Flexões adicionadas para todos os alunos com sucesso!'); // Mensagem toast de sucesso
   };
 
   // Função para pagar flexões em massa
@@ -146,6 +150,7 @@ const CredFlex = () => {
     }
     // Recarrega os alunos após a atualização
     await carregarAlunosDoFirestore();
+    toast.success('Flexões pagas em massa com sucesso!'); // Mensagem toast de sucesso
   };
 
   // Filtrar alunos pelo pelotão selecionado e ordenar pelo número
@@ -195,41 +200,63 @@ const CredFlex = () => {
           <ul>
             {alunoSelecionado.historico.map((item, index) => (
               <li key={index}>
-                {item.data}: {item.flexoes} flexões ({item.tipo})
+                {item.data}: {item.flexoes} flexões {item.tipo}
               </li>
             ))}
           </ul>
 
-          {/* Campo para adicionar flexões */}
-          <input
-            type="number"
-            value={quantidade}
-            onChange={(e) => setQuantidade(Number(e.target.value))}
-            placeholder="Quantidade de Flexões"
-          />
-          <button onClick={adicionarFlexoes}>Adicionar Flexões</button>
+          {/* Adicionar Flexões */}
+          <div>
+            <label htmlFor="quantidade">Quantidade a adicionar: </label>
+            <input
+              type="number"
+              id="quantidade"
+              value={quantidade}
+              onChange={(e) => setQuantidade(Number(e.target.value))}
+            />
+            <button onClick={adicionarFlexoes}>Adicionar Flexões</button>
+          </div>
 
-          {/* Campo para pagar flexões */}
-          <button onClick={pagarFlexoes}>Pagar Flexões</button>
+          {/* Pagar Flexões */}
+          <div>
+            <label htmlFor="quantidade">Quantidade a pagar: </label>
+            <input
+              type="number"
+              id="quantidade"
+              value={quantidade}
+              onChange={(e) => setQuantidade(Number(e.target.value))}
+            />
+            <button onClick={pagarFlexoes}>Pagar Flexões</button>
+          </div>
         </div>
       )}
 
-      {/* Controles de Ação em Massa - apenas se o pelotão estiver selecionado */}
-      {pelotaoSelecionado && (
-        <div className="cred-flex-mass-actions">
-          <h2>Ações em Massa</h2>
+      {/* Adicionar Flexões em Massa */}
+      <div>
+        <h2>Adicionar Flexões em Massa</h2>
+        <label htmlFor="quantidadeMassa">Quantidade: </label>
+        <input
+          type="number"
+          id="quantidadeMassa"
+          value={quantidadeMassa}
+          onChange={(e) => setQuantidadeMassa(Number(e.target.value))}
+        />
+        <button onClick={adicionarFlexoesEmMassa}>Adicionar Flexões para o Pelotão Selecionado</button>
+        <button onClick={adicionarFlexoesParaTodos}>Adicionar Flexões para Todos os Alunos</button>
+      </div>
 
-          <input
-            type="number"
-            value={quantidadeMassa}
-            onChange={(e) => setQuantidadeMassa(Number(e.target.value))}
-            placeholder="Quantidade de Flexões em Massa"
-          />
-          <button onClick={adicionarFlexoesEmMassa}>Adicionar Flexões para Pelotão</button>
-          <button onClick={adicionarFlexoesParaTodos}>Adicionar Flexões para Todos</button>
-          <button onClick={pagarFlexoesEmMassa}>Pagar Flexões em Massa</button>
-        </div>
-      )}
+      {/* Pagar Flexões em Massa */}
+      <div>
+        <h2>Pagar Flexões em Massa</h2>
+        <label htmlFor="quantidadeMassa">Quantidade: </label>
+        <input
+          type="number"
+          id="quantidadeMassa"
+          value={quantidadeMassa}
+          onChange={(e) => setQuantidadeMassa(Number(e.target.value))}
+        />
+        <button onClick={pagarFlexoesEmMassa}>Pagar Flexões para o Pelotão Selecionado</button>
+      </div>
     </div>
   );
 };

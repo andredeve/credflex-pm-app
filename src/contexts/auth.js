@@ -1,11 +1,41 @@
 import {useState, createContext, useEffect} from 'react';
 import {auth, db} from '../services/firebaseConection';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signOut } from 'firebase/auth';
-import { doc, getDoc, query, where, setDoc, collection, getDocs} from 'firebase/firestore';
+import { doc, getDoc, query, where, setDoc, collection, getDocs, updateDoc} from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const AuthContext = createContext({});
+
+// Função para zerar campos da coleção UsuarioCredFlex
+async function resetFlexData() {
+    try {
+        // Referência para a coleção UsuarioCredFlex
+        const usersCollection = collection(db, 'UsuarioCredFlex');
+        
+        // Obtém todos os documentos da coleção
+        const usersSnapshot = await getDocs(usersCollection);
+        
+        // Itera sobre cada documento e atualiza os campos desejados
+        const promises = usersSnapshot.docs.map(async (userDoc) => {
+            const userRef = doc(db, 'UsuarioCredFlex', userDoc.id);
+            
+            // Atualiza os campos para 0 ou valores vazios
+            await updateDoc(userRef, {
+                historico: [], // Zera o histórico
+                saldoFlexoes: 0, // Zera o saldo de flexões
+                totalFlexoesPagas: 0 // Zera o total de flexões pagas
+            });
+        });
+
+        // Espera que todas as operações de atualização sejam concluídas
+        await Promise.all(promises);
+        
+        console.log("Todos os usuários foram atualizados com sucesso.");
+    } catch (error) {
+        console.error("Erro ao atualizar os usuários:", error);
+    }
+}
 
 // Função para gerar uma senha aleatória
 function generateRandomPassword(length = 10) {
@@ -148,7 +178,9 @@ async function populateDatabase() {
         const nome = docSnap.data().nome;
         const isSheriff = docSnap.data().isSheriff;
         const nivel = docSnap.data().nivel;
-        // populateDatabase();
+        // populateDatabase();       
+        // Chame a função para executar o reset
+        // resetFlexData();
     
         let data = {
           uid: uid,
