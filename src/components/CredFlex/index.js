@@ -5,7 +5,7 @@ import { collection, getDocs, updateDoc, doc } from 'firebase/firestore'; // Par
 import { AuthContext } from "../../contexts/auth";
 
 const CredFlex = () => {
-  const { user } = useContext(AuthContext); // Obtenha o usuário do contexto
+//   const { user } = useContext(AuthContext); // Obtenha o usuário do contexto
   const [alunosData, setAlunosData] = useState([]); // Alunos carregados do Firestore
   const [pelotaoSelecionado, setPelotaoSelecionado] = useState('');
   const [alunoSelecionado, setAlunoSelecionado] = useState(null);
