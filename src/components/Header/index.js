@@ -44,6 +44,11 @@ export default function Header() {
                         <li>
                             <Link to="/frequencia" onClick={toggleMenu}>Frequência</Link>
                         </li>
+
+                        <li>
+                            <Link to="/frequencia" onClick={toggleMenu}>WebCam</Link>
+                        </li>
+
                         <li>
                             <Link to="/profile" onClick={toggleMenu}>Perfil</Link>
                         </li>
